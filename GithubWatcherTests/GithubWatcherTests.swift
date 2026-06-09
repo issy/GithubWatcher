@@ -1,10 +1,3 @@
-//
-//  GithubWatcherTests.swift
-//  GithubWatcherTests
-//
-//  Created by Issy Szemeti on 03/06/2026.
-//
-
 import Testing
 @testable import GithubWatcher
 

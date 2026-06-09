@@ -1,10 +1,3 @@
-//
-//  GithubWatcherUITestsLaunchTests.swift
-//  GithubWatcherUITests
-//
-//  Created by Issy Szemeti on 03/06/2026.
-//
-
 import XCTest
 
 final class GithubWatcherUITestsLaunchTests: XCTestCase {
