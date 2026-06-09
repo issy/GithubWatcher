@@ -12,9 +12,10 @@ final class WatchedRepository {
     @Relationship(deleteRule: .cascade, inverse: \WatchedPullRequest.repository)
     var watchedPullRequests: [WatchedPullRequest] = []
 
-    init(owner: String, name: String) {
+    init(owner: String, name: String, watchedPullRequests: [WatchedPullRequest] = []) {
         self.owner = owner
         self.name = name
+        self.watchedPullRequests = watchedPullRequests
         self.canonicalName = WatchedRepository.getCanonicalName(owner: owner, name: name)
     }
 

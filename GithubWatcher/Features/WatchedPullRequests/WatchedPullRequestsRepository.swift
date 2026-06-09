@@ -6,13 +6,13 @@ final class WatchedPullRequest {
     var author: String
     var id: Int
     var title: String
-    
+
     var headCommitRef: String
     var currentMergeableStatus: PullRequestMergeableStatus
-    
+
     @Relationship(deleteRule: .cascade, inverse: \PullRequestCheck.pullRequest)
     var currentChecks: [PullRequestCheck]
-    
+
     var repository: WatchedRepository
 
     init(author: String, id: Int, title: String, headCommitRef: String, currentMergeableStatus: PullRequestMergeableStatus? = nil, currentChecks: [PullRequestCheck], repository: WatchedRepository) {
