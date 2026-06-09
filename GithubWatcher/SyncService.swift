@@ -2,11 +2,11 @@ import SwiftData
 
 @Observable
 final class SyncService {
-    let watchedRepositoriesRepository: WatchedRepositoriesRepositoryProtocol
+    let watchedRepositoriesRepository: WatchedRepositoriesRepository
     let watchedPullRequestsRepository: any WatchedPullRequestsRepository
     let modelContext: ModelContext
 
-    init(watchedRepositoriesRepository: WatchedRepositoriesRepositoryProtocol, watchedPullRequestsRepository: any WatchedPullRequestsRepository, modelContext: ModelContext) {
+    init(watchedRepositoriesRepository: any WatchedRepositoriesRepository, watchedPullRequestsRepository: any WatchedPullRequestsRepository, modelContext: ModelContext) {
         self.watchedRepositoriesRepository = watchedRepositoriesRepository
         self.watchedPullRequestsRepository = watchedPullRequestsRepository
         self.modelContext = modelContext

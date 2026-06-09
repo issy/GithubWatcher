@@ -69,10 +69,10 @@ enum GithubCheckRunConclusion: String, Decodable {
      case actionRequired = "action_required"
 }
 
-enum PullRequestMergeableStatus: Decodable {
-    case yes
-    case no
-    case unknown
+enum PullRequestMergeableStatus: String, Decodable {
+    case mergeable = "mergeable"
+    case notMergeable = "notMergeable"
+    case unknown = "unknown"
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -81,7 +81,7 @@ enum PullRequestMergeableStatus: Decodable {
             // nil means a background job has been started to determine mergeable status
             self = .unknown
         } else {
-            self = try container.decode(Bool.self) ? .yes : .no
+            self = try container.decode(Bool.self) ? .mergeable : .notMergeable
         }
     }
 }
@@ -107,7 +107,7 @@ class MockGithubClient: GithubClientProtocol {
     }
     
     func fetchPullRequest(repoCanonicalName: String, pullRequestNumber: Int) async throws -> GithubPullRequest {
-        return GithubPullRequest(number: 4, title: "Implement foobar", state: .open, user: MockGithubClient.mockUser, createdAt: .distantPast, mergedAt: nil, mergeable: .yes, head: GithubPullRequestHead(sha: "github-head-sha"))
+        return GithubPullRequest(number: 4, title: "Implement foobar", state: .open, user: MockGithubClient.mockUser, createdAt: .distantPast, mergedAt: nil, mergeable: .mergeable, head: GithubPullRequestHead(sha: "github-head-sha"))
     }
 
     func fetchPullRequestHasBeenMerged(repoCanonicalName: String, pullRequestNumber: Int) async throws -> Bool {

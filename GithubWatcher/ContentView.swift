@@ -57,7 +57,7 @@ struct PullRequestsView: View {
 
     private func fetch() async throws {
         isRequesting = true
-        let data = try! await githubClient.fetchAllOpenPullRequestsForRepoByUser(repoCanonicalName: "issy/midi-footcontroller", authoredBy: "issy").map { WatchedPullRequest(author: $0.user.login, id: $0.number, currentChecks: [], repository: WatchedRepository(owner: "issy", name: "midi-footcontroller")) }
+        let data = try! await githubClient.fetchAllOpenPullRequestsForRepoByUser(repoCanonicalName: "issy/midi-footcontroller", authoredBy: "issy").map { WatchedPullRequest(author: $0.user.login, id: $0.number, title: "Title", headCommitRef: "abc123", currentChecks: [], repository: WatchedRepository(owner: "issy", name: "midi-footcontroller")) }
         watchedPullRequests.forEach {
             modelContext.delete($0)
         }
@@ -106,7 +106,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    var sharedModelContainer: ModelContainer = {
+    let sharedModelContainer: ModelContainer = {
         let schema = Schema([
             WatchedRepository.self,
             WatchedPullRequest.self,
