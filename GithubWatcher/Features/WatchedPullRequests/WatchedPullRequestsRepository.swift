@@ -25,7 +25,7 @@ final class WatchedPullRequest {
         self.repository = repository
     }
 
-    func link() -> String? {
+    func link() -> String {
         return "https://github.com/\(repository.canonicalName)/pull/\(id)"
     }
 
