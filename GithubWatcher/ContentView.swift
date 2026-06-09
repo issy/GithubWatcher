@@ -40,7 +40,7 @@ struct PullRequestsListView: View {
 }
 
 struct PullRequestsView: View {
-    @Environment(GithubClient.self) private var githubClient
+    @Environment(AppDependencies.self) private var dependencies
     @Environment(\.modelContext) private var modelContext
 
     @Query private var watchedPullRequests: [WatchedPullRequest]
@@ -57,7 +57,7 @@ struct PullRequestsView: View {
 
     private func fetch() async throws {
         isRequesting = true
-        let data = try! await githubClient.fetchAllOpenPullRequestsForRepoByUser(repoCanonicalName: "issy/midi-footcontroller", authoredBy: "issy").map { WatchedPullRequest(author: $0.user.login, id: $0.number, title: "Title", headCommitRef: "abc123", currentChecks: [], repository: WatchedRepository(owner: "issy", name: "midi-footcontroller")) }
+        let data = try! await dependencies.githubClient.fetchAllOpenPullRequestsForRepoByUser(repoCanonicalName: "issy/midi-footcontroller", authoredBy: "issy").map { WatchedPullRequest(author: $0.user.login, id: $0.number, title: "Title", headCommitRef: "abc123", currentChecks: [], repository: WatchedRepository(owner: "issy", name: "midi-footcontroller")) }
         watchedPullRequests.forEach {
             modelContext.delete($0)
         }
