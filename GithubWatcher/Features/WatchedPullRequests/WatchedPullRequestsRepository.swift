@@ -94,6 +94,7 @@ protocol WatchedPullRequestsRepository {
     func syncPullRequests(forRepository repoCanonicalName: String, by author: String) async throws
 }
 
+@Observable
 final class SwiftDataWatchedPullRequestsRepository: WatchedPullRequestsRepository {
     let watchedRepositoriesRepository: any WatchedRepositoriesRepository
     let githubClient: any GithubClientProtocol
