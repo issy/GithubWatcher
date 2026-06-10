@@ -45,7 +45,7 @@ final class WatchedRepository {
 }
 
 protocol WatchedRepositoriesRepository {
-    func insertWatchedRepository(owner: String, name: String) throws
+    func insertWatchedRepository(owner: String, name: String)
     func fetchRepository(repoCanonicalName: String) -> WatchedRepository?
     func fetchRepository(owner: String, name: String) -> WatchedRepository?
     func fetchAllRepositories() -> [WatchedRepository]
@@ -61,7 +61,7 @@ final class SwiftDataWatchedRepositoriesRepository: WatchedRepositoriesRepositor
         self.modelContext = modelContext
     }
 
-    func insertWatchedRepository(owner: String, name: String) throws {
+    func insertWatchedRepository(owner: String, name: String) {
         if fetchRepository(owner: owner, name: name) == nil {
             let model = WatchedRepository(owner: owner, name: name)
             modelContext.insert(model)
