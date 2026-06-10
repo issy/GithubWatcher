@@ -6,8 +6,8 @@ import SwiftData
 class AppDependencies {
     let modelContainer: ModelContainer
     let githubClient: any GithubClientProtocol
-    let watchedRepositoriesRepository: any WatchedRepositoriesRepository
-    let watchedPullRequestsRepository: any WatchedPullRequestsRepository
+    let watchedRepositoriesRepository: SwiftDataWatchedRepositoriesRepository
+    let watchedPullRequestsRepository: SwiftDataWatchedPullRequestsRepository
     let syncService: SyncService
 
     init() throws {
@@ -46,6 +46,8 @@ struct GithubWatcherApp: App {
             ContentView().navigationTitle("GithubWatcher")
         }
         .modelContainer(dependencies.modelContainer)
-        .environment(dependencies)
+        .environment(dependencies.syncService)
+        .environment(dependencies.watchedRepositoriesRepository)
+        .environment(dependencies.watchedPullRequestsRepository)
     }
 }

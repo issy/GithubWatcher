@@ -8,10 +8,6 @@ struct WatchedRepositoriesView: View {
     @Query private var watchedRepositories: [WatchedRepository]
 
     var body: some View {
-        WatchedRepositoriesContentView(viewModel: WatchedRepositoriesContentViewModel(repositories: watchedRepositories.map{RepositoryItemData.fromModel($0)}, addWatchedRepository: dependencies.watchedRepositoriesRepository.insertWatchedRepository))
-    }
-
-    private func addWatchedRepository() {
-        modelContext.insert(WatchedRepository(owner: "issy", name: "app"))
+        WatchedRepositoriesContentView(viewModel: WatchedRepositoriesContentViewModel(repositories: watchedRepositories.map{RepositoryItemData.fromModel($0)}, addWatchedRepository: dependencies.watchedRepositoriesRepository.insertWatchedRepository, deleteAll: dependencies.watchedRepositoriesRepository.clearAll))
     }
 }

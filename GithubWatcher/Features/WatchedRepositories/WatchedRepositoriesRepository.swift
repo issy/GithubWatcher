@@ -49,6 +49,7 @@ protocol WatchedRepositoriesRepository {
     func fetchRepository(repoCanonicalName: String) -> WatchedRepository?
     func fetchRepository(owner: String, name: String) -> WatchedRepository?
     func fetchAllRepositories() -> [WatchedRepository]
+    func clearAll()
 }
 
 @Observable
@@ -83,5 +84,9 @@ final class SwiftDataWatchedRepositoriesRepository: WatchedRepositoriesRepositor
         } else {
             return []
         }
+    }
+
+    func clearAll() {
+        try! modelContext.delete(model: WatchedRepository.self, where: #Predicate { _ in true })
     }
 }

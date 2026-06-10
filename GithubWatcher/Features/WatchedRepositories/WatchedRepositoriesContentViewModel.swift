@@ -17,4 +17,5 @@ struct RepositoryItemData {
 struct WatchedRepositoriesContentViewModel {
     let repositories: [RepositoryItemData]
     let addWatchedRepository: (_ owner: String, _ name: String) -> Void
+    let deleteAll: () -> Void
 }
