@@ -3,11 +3,11 @@ import SwiftData
 
 struct WatchedRepositoriesView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(AppDependencies.self) private var dependencies
+    @Environment(SwiftDataWatchedRepositoriesRepository.self) private var watchedRepositoriesRepository
 
     @Query private var watchedRepositories: [WatchedRepository]
 
     var body: some View {
-        WatchedRepositoriesContentView(viewModel: WatchedRepositoriesContentViewModel(repositories: watchedRepositories.map { RepositoryItemData.init($0) }, addWatchedRepository: dependencies.watchedRepositoriesRepository.insertWatchedRepository, deleteAll: dependencies.watchedRepositoriesRepository.clearAll))
+        WatchedRepositoriesContentView(viewModel: WatchedRepositoriesContentViewModel(repositories: watchedRepositories.map { RepositoryItemData.init($0) }, addWatchedRepository: watchedRepositoriesRepository.insertWatchedRepository, deleteAll: watchedRepositoriesRepository.clearAll))
     }
 }

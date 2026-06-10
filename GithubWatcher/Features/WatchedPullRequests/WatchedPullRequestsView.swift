@@ -3,7 +3,7 @@ import SwiftData
 
 struct WatchedPullRequestsView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(AppDependencies.self) private var dependencies
+    @Environment(SwiftDataWatchedPullRequestsRepository.self) private var watchedPullRequestsRepository
 
     @Query private var watchedPullRequests: [WatchedPullRequest]
 
