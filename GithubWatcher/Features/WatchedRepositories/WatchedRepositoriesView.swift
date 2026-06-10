@@ -8,6 +8,6 @@ struct WatchedRepositoriesView: View {
     @Query private var watchedRepositories: [WatchedRepository]
 
     var body: some View {
-        WatchedRepositoriesContentView(viewModel: WatchedRepositoriesContentViewModel(repositories: watchedRepositories.map{RepositoryItemData.fromModel($0)}, addWatchedRepository: dependencies.watchedRepositoriesRepository.insertWatchedRepository, deleteAll: dependencies.watchedRepositoriesRepository.clearAll))
+        WatchedRepositoriesContentView(viewModel: WatchedRepositoriesContentViewModel(repositories: watchedRepositories.map { RepositoryItemData.init($0) }, addWatchedRepository: dependencies.watchedRepositoriesRepository.insertWatchedRepository, deleteAll: dependencies.watchedRepositoriesRepository.clearAll))
     }
 }

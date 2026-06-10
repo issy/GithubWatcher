@@ -8,6 +8,6 @@ struct WatchedPullRequestsView: View {
     @Query private var watchedPullRequests: [WatchedPullRequest]
 
     var body: some View {
-        WatchedPullRequestsContentView(viewModel: WatchedPullRequestsContentViewModel())
+        WatchedPullRequestsContentView(viewModel: WatchedPullRequestsContentViewModel(pullRequests: watchedPullRequests.map{PullRequestItemData($0)}))
     }
 }

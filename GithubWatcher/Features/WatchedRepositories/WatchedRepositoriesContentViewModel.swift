@@ -9,8 +9,8 @@ struct RepositoryItemData {
         self.canonicalName = "\(owner)/\(name)"
     }
 
-    static func fromModel(_ model: WatchedRepository) -> Self {
-        .init(owner: model.owner, name: model.name)
+    init(_ model: WatchedRepository) {
+        self.init(owner: model.owner, name: model.name)
     }
 }
 
